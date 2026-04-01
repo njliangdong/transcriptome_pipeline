@@ -27,18 +27,19 @@ for sample in $(ls *_1.clean.fastq | sed 's/_1.clean.fastq//')
 do
   echo "Processing $sample ..."
 
-  sortmerna \
-    --ref $db_path/smr_v4.3_default_db.fasta \
-    --reads ${sample}_1.clean.fastq \
-    --reads ${sample}_2.clean.fastq \
-    --paired_in \
-    --fastx \
-    --other ../sortmerna_workdir/non_rRNA/${sample} \
-    --aligned ../sortmerna_workdir/rRNA/${sample} \
-    --threads 24 \
-    --num_alignments 1 \
-    --no-best \
-    --workdir ../sortmerna_workdir/${sample}
+sortmerna \
+  --ref $db_path/smr_v4.3_default_db.fasta \
+  --reads ${sample}_1.clean.fastq \
+  --reads ${sample}_2.clean.fastq \
+  --paired_in \
+  --paired_out \
+  --fastx \
+  --other ../sortmerna_workdir/non_rRNA/${sample} \
+  --aligned ../sortmerna_workdir/rRNA/${sample} \
+  --threads 24 \
+  --num_alignments 1 \
+  --no-best \
+  --workdir ../sortmerna_workdir/${sample}
 
 done
 
